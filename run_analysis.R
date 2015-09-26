@@ -2,18 +2,28 @@ substrReplace <-function(x) {
         
         ##
         ## substitution vectors
+        ## droping end spaces, parentheses, dashes
+        ## replacing spaces with undersores, dashes with double underscores
+        ## and also using double underscores to denote a space, "comma"
         fromsub<-c("^t", "^f", "-" , "Acc" , "Gyro", "-XYZ", "BodyBody","Body",
                    "Gravity", "Jerk", "Mag", "mean", "std", "Freq", "\\(\\)", 
                    "X$","Y$","Z$", " $" )
-        tosub  <-c("time ", "frequency domain ", " - ", "accelerometer ", 
-                   "gyroscope ", "3-axial ", "body ", "body ", "gravity ",
-                   "jerk ","magnitude", "mean ", "standard deviation ", 
-                   "frequency " , "", "X axis", "Y axis", "Z axis", "")
+        tosub  <-c("time_", "frequency_domain_", "_", "accelerometer_", 
+                   "gyroscope_", "3-axial_", "body_", "body_", "gravity_",
+                   "jerk_","magnitude", "mean_", "standard_deviation_", 
+                   "frequency_", "", "X_axis", "Y_axis", "Z_axis", "")
         
         sub1<-x
         for (i in 1:length(tosub)) {
                 sub1<-gsub(fromsub[i], tosub[i],sub1)
         }
+        ##
+        ## drop the trailing "_"
+        sub1<-gsub("_$", "", sub1)
+        
+        
+        ##
+        ## return
         sub1
 }
 

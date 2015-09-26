@@ -33,6 +33,9 @@ General description of the file including:
  - Variables present in the dataset
 
 (you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)
+```{r}
+head(aa)
+```
 
 ###Variable 1 (repeat this section for all variables in the dataset)
 Short description of what the variable describes.
