@@ -75,8 +75,8 @@ A single CSV file, representing a tidy dataset as per the principles
 outlined in [@Wickham2014]
 
 The file can be loaded and viewed using the following code:
-```{r}
-finaldf<-read.csv("finalAverageTidy.csv")
+```
+finaldf<-read.csv("finalAverageTidy.csv", stringsAsFactors = FALSE)
 View(finaldf)
 ```
 
@@ -141,12 +141,41 @@ expression matching.
 
 
 ## Code walkthrough
+The
+[code submited](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/run_analysis.R) 
+has extensive comments throughout, explaining the process at each step. An 
+outline is provided here along with some justifications, as needed:
 
+* The provided zip file is unziped in the current directory
+* the column names are read-in from the features.txt file, the needed ones are 
+determined by string matching, and the substitution algorithm described above is 
+applied to derive the final list of "well-formed" names. A separate function is
+called for the substitution.
+* the activity levels are read-in and the data frame columns are named for easy
+access
+* both the train and test activity sets are read-in. The column is named the same
+as the relevant activity levels column (the key) so as to accomodate joining
+* read the full train and test sets, attach (cbind) the activity data
+read before, and row-bind the two sets into one
+* the unneeded columns are dropped and all remaining ones appropriately named
+* joining with the activity data, we get also meaningful names in the activities
+(and we then drop the unneeded numeric activity keys from the set)
+* the initial set is completed by reading in the subject data and cbind()ing them
+with the full dataset
+* now we group the dataset by activity and subject, using the dplyr group_by()
+function, and then, using summarize_each(), we get the mean for each other variable
+based on this grouping
+* the final set is written back as a CSV file
 
 # Data
+The resulting data are a 180x81 table, representing 30 subjects performing 
+6 activities each (30x6) and 79 variables (means) per subject-activity combination
+There are with no NAs (this can be verified with ```all(colSums(is.na(finaldf))==0)```)
 
 A more detailed description can be found in the
 [accompanying codebook](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/projectCodeBook.md)
+
+A sample generated CSV can be downloaded from [GitHub](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/finalAverageTidy.csv)
 
 
 # Appendix
@@ -154,7 +183,6 @@ Ideas and general clarifications were obtained from the very helpful page from
 David Hood [@bloke], one of the TCAs 
 
 The template for the used Codebook was obtained from [@codebooktemplate]
-
 
 
 # References

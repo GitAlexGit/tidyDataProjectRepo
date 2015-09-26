@@ -47,7 +47,7 @@ xcolnamesTemp<- read.table("UCI HAR Dataset/features.txt", stringsAsFactors=FALS
 ## so i can use substring matching (ignoring case)
 ## This gives me a logical vector I can use for subsetting the raw data
 ## match "-std" or "-mean"
-## note: 
+
 neededCols<-grep ("-std|-mean", xcolnamesTemp$V2)
 
 ##
@@ -70,8 +70,7 @@ trnrawact <- read.table("UCI HAR Dataset/train/y_train.txt", stringsAsFactors=FA
 names(tstrawact) <- "activityN"
 names(trnrawact)<- "activityN"
 
-## 
-## read the subject data
+
 
 ##
 ## read in raw X_test data and X_Train data
@@ -86,8 +85,6 @@ trnrawx<-read.table("UCI HAR Dataset/train/X_train.txt",  stringsAsFactors=FALSE
 tstrawx <-cbind(tstrawx,tstrawact )
 trnrawx <-cbind(trnrawx, trnrawact)
 
-##
-## column-bind the subject data for each set
 
 
 ##
