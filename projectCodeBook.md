@@ -19,70 +19,140 @@ Raw data are made available by the UCI Machine Learning repository. Full
 information of the data set can be found 
 [here](https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
+From the original project:
+```
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+
+For each record it is provided:
+======================================
+
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+```
+
 ##Creating the tidy datafile
 
 ###Guide to create the tidy data file
 
 To create the data set:
 
-1. Donwload the dataset ZIP file, if not already available, from 
+1.  Donwload the dataset ZIP file, if not already available, from 
 [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 
-2. Obtain the 
+2.  Obtain the 
 [run_analysis.R script](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/run_analysis.R) 
 
-3. Place the data set ZIP file and the run_analysis.R script in the same directory. 
+3.  Place the data set ZIP file and the run_analysis.R script in the same directory. 
 
-4. Run the script. The new tidy data set will be generated in the same directory,
-named "finalAverageTidy.txt"
+4.  Run the script. The new tidy data set will be generated in the same directory,
+named **"finalAverageTidy.txt"**
 
 Please refer to the 
 [README](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/README.md) 
 for information on prerequisites
 
 ###Cleaning of the data
-The script collates the train and test data from the provided raw dataset, renames
-variables to more readable forms, keeps the variables relevant to mean and 
-standard deviation, collates the subject and (meaningfully-named) activities
-and then proceeds to calculate the means for all variables for each 
-subject and activity.
+The script 
+
+*  collates the train and test data from the provided raw dataset to form a 
+single dataset with all data
+*  renames the measured variables to more readable forms 
+*  drops all variables from the original set not relevant to mean and 
+standard deviation 
+*  collates the subject and (meaningfully-named) activities (fixed) variables to 
+the same set
+*  finally calculates the means for all variables per each subject and activity 
 
 A detailed description of the process is presented in the 
 [README](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/README.md) 
 
 
-##Description of the variables in the finalAverageTidy.txt file
-* **Dimensions:** it's a 180 x 81 dataset
+#Variables
+
+##Short Description 
+* **Dimensions:** The resulting dataset dimensions are 180 x 81
 * **Fixed variables:** The "subject" and "activity" variables are fixed over the 
 dataset, i.e., they are non-experimental. The dataset is fully crossed, containing
 all combinations of subjects and activities. All 30 subjects performed all 6 
 activities resulting in 180 rows of data. The values of the activities are 
-* **Non-fixed Variables:**  The 79 variables are the means per subject and 
-activity of all variables from the original set 
-* **Naming:** 
-    * columns: column names were altered from the original dataset, in order to
-    derive a more human-readable strings. The processing was automated: 
-        * A substitution matrix was used for substring substrings. For example, 
-        substring "Gyro" was substituted to "gyroscope"
-        * parentheses, spaces and dashes ("-"") where dropped. 
-        * word separation was accomplished via underscores ("_")
-        * where semanticaly important, double underscores ("__") were used as 
-        separators. This was the case in the places where dashes were previously 
-        used, for example. 
-    * variables: the activity numbers were substituted by the corresponding 
-    descriptive strings. 
+* **Measured Variables:**  The 79 variables are the means per subject and 
+activity of all variables from the original raw set which were representing
+means and standard deviations (exact details of how the list of variables 
+was derived can be found in the 
+[README](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/README.md) )
 
 
-General description of the file including:
- - Dimensions of the dataset
- - Summary of the data
- - Variables present in the dataset
+###Original Variables
+The original, full measurements dataset description: 
+```
+Feature Selection 
+=================
 
-(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)
-```{r}
-head(aa)
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
 ```
 
+
+From the above raw dataset, the following variables were chosen for processing.
+They all represent means and stardard deviations
 
 ```
 [1] "tBodyAcc-mean()-X"               "tBodyAcc-mean()-Y"               "tBodyAcc-mean()-Z"              
@@ -113,6 +183,50 @@ head(aa)
 [76] "fBodyBodyGyroMag-meanFreq()"     "fBodyBodyGyroJerkMag-mean()"     "fBodyBodyGyroJerkMag-std()"     
 [79] "fBodyBodyGyroJerkMag-meanFreq()"
 ```
+
+Ater adding the "subject" and "activity" variables, these 79 measurement 
+variables were averaged by subject and activity. Each of the
+79 corresponding columns of the resulting dataset represents, therefore, is the 
+**mean** of the original, raw variable, summarized per subject and activity. 
+
+###Fixed variables
+- The "subject" variable takes values from the set [1:30] and corresponds
+to the individuals who took part in the experiments
+- the "activity" variable represents the 6 activities measured. The set of values is
+ ```
+ WALKING, 
+ WALKING_UPSTAIRS, 
+ WALKING_DOWNSTAIRS
+ SITTING, 
+ STANDING and
+ LAYING.
+```
+The dataset is fully crossed, i.e., all subjects performed all activities. 
+
+Note that in the original raw set the data from 70% of the subjects were
+placed in a "training" set, and the rest in a test set. In the final analysis
+all data was collated in a single set.
+
+###Measured Variables
+
+Descriptions of the original raw variables are presented in section
+[Original Variables][], above
+
+As explained above the final data is comprised of the  averages of the
+chosen 79 variables. Since *all* of the final measured variables are 
+averages, the names of the columns were not renamed to include the word "mean", 
+this would add very little value
+
+Further information for the measured variables:
+
+- Variable class: all measured variables are numeric
+- Unit of measurement: all measurements are normalized and bound between 
+[-1, 1], therefore there is no unit of measurement
+- Naming Scheme:  The original raw variables, as listed in 
+the [Original Variables][] section were renamed to the below set. The meaning
+of the name constituents was therefore preserved and the explanations presented
+in the [Original Variables][] section apply
+
 ```
 [1] "time_body_accelerometer__mean__X_axis"                                
  [2] "time_body_accelerometer__mean__Y_axis"                                
@@ -195,22 +309,3 @@ head(aa)
 [79] "frequency_domain_body_gyroscope_jerk_magnitude_mean_frequency"
 ```
 
-###Variable 1 (repeat this section for all variables in the dataset)
-Short description of what the variable describes.
-
-Some information on the variable including:
- - Class of the variable
- - Unique values/levels of the variable
- - Unit of measurement (if no unit of measurement list this as well)
- - In case names follow some schema, describe how entries were constructed (for example time-body-gyroscope-z has 4 levels of descriptors. Describe these 4 levels). 
-
-(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)
-
-####Notes on variable 1:
-If available, some additional notes on the variable not covered elsewehere. If no notes are present leave this section out.
-
-##Sources
-Sources you used if any, otherise leave out.
-
-##Annex
-If you used any code in the codebook that had the echo=FALSE attribute post this here (make sure you set the results parameter to 'hide' as you do not want the results to show again)

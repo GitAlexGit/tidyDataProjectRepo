@@ -113,7 +113,6 @@ justification is in line with the principles outlined in [@Wickham2014]:
     A tall dataset representing 180 x 70 data items would be too unwieldly to 
     manage and present.
 
-
 * **Naming:** 
     * columns: column names were altered from the original dataset, in order to
     derive a more human-readable strings. The processing was automated: 
