@@ -113,10 +113,6 @@ justification is in line with the principles outlined in [@Wickham2014]:
     A tall dataset representing 180 x 70 data items would be too unwieldly to 
     manage and present.
 
-* **fixed variables:** The "subject" and "activity" variables are fixed over the 
-dataset, i.e., they are non-experimental. The dataset is fully crossed, containing
-all combinations of subjects and activities. All 30 subjects performed all 6 
-activities resulting in 180 rows of data
 
 * **Naming:** 
     * columns: column names were altered from the original dataset, in order to
@@ -165,7 +161,8 @@ with the full dataset
 * now we group the dataset by activity and subject, using the dplyr group_by()
 function, and then, using summarize_each(), we get the mean for each other variable
 based on this grouping
-* the final set is written back as a CSV file
+* the final set is written back as a text file using write.table() and using
+"," as separator
 
 # Data
 The resulting data are a 180x81 table, representing 30 subjects performing 
@@ -175,7 +172,7 @@ There are with no NAs (this can be verified with ```all(colSums(is.na(finaldf))=
 A more detailed description can be found in the
 [accompanying codebook](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/projectCodeBook.md)
 
-A sample generated CSV can be downloaded from [GitHub](https://github.com/GitAlexGit/tidyDataProjectRepo/blob/master/finalAverageTidy.csv)
+The generated CSV can be downloaded from the Coursera project submission link [here](https://s3.amazonaws.com/coursera-uploads/user-d7d31ee9e557755d96b6561c/975116/asst-3/4f259e70646811e5b91e69c27466c863.txt)
 
 
 # Appendix

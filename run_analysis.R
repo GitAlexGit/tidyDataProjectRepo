@@ -129,4 +129,4 @@ finalDF<-summarize_each(groupdf, funs(mean))
 
 ##
 ## write to a csv
-write.csv(finalDF, file="finalAverageTidy.csv", row.names=FALSE)
+write.table(finalDF, file="finalAverageTidy.txt", row.names=FALSE, sep=",")
