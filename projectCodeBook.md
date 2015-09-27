@@ -311,5 +311,7 @@ David Hood [Hood], one of the TCAs
 The template for the used Codebook was obtained from Joris Schut [Schut]
 
 #References
--  [Hood] : Hood, David. 2015. “GETTING AND CLEANING THE ASSIGNMENT.” https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/
--  [Schut] : Schut, Joris. 2015. “Codebook Template.” https://gist.github.com/JorisSchut/dbc1fc0402f28cad9b41
+
+-  [Hood] :  Hood, David. 2015. “GETTING AND CLEANING THE ASSIGNMENT.” https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment
+
+-  [Schut] :  Schut, Joris. 2015. “Codebook Template.” https://gist.github.com/JorisSchut/dbc1fc0402f28cad9b41
