@@ -1,42 +1,6 @@
----
+
 title: "Coursera Getting and Cleaning Data Course Project"
-output: html_document
-references:
-- id: Wickham2014
-  title: Tidy Data
-  author:
-  - family: Wickham
-    given: Hadley
-  container-title: The Journal of Statistical Software
-  volume: 59
-  URL: 'http://www.jstatsoft.org/article/view/v059i10'
-  DOI: 10.18637/jss.v059.i10
-  issue: 10
-  publisher: The Foundation for Open Access Statistics
-  type: article-journal
-  issued:
-    year: 2014
-  
-- id: codebooktemplate
-  title: Codebook Template
-  author:
-  - family: Schut
-    given: Joris
-  URL: 'https://gist.github.com/JorisSchut/dbc1fc0402f28cad9b41'
-  type: webpage
-  issued:
-    year: 2015
-    
-- id: bloke
-  title: GETTING AND CLEANING THE ASSIGNMENT
-  author:
-  - family: Hood
-    given: David
-  URL: 'https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/'
-  type: webpage
-  issued:
-    year: 2015    
----
+===========================================
 
 
 # General
@@ -72,7 +36,7 @@ should be provided.
 
 ## Outputs
 A single CSV file, representing a tidy dataset as per the principles 
-outlined in [@Wickham2014]
+outlined in [Wickham]
 
 The file can be loaded and viewed using the following code:
 ```
@@ -99,14 +63,14 @@ measurement
 arrangement was kept where all measurements relevant to an activity of a subject
 were arranged horizontally. This was deemed more appropriate than a "tall" 
 set with a "measurement type" and "measurement value" arrangement. The
-justification is in line with the principles outlined in [@Wickham2014]:
+justification is in line with the principles outlined in [Wickham] :
     * The measurements represent a set of readings taken for a specific person
     during a specific activity. They are not independent, they represent a 
     very specific experimental output. The grouping against the person and
     activity, therefore, is quite self-explanatory. A "tall" representation
     would likely falsely represent a set of independent measurements
     * The analysis of the dataset favors the wide arrangement also in the sense
-    that as per [@Wickham2014] relationships are best analyzed between variables. 
+    that as per [Wickham] relationships are best analyzed between variables. 
     In the given dataset there is much value in the exploration and analysis 
     of the correlation of the different measurements 
     * For practical purposes, the wide arrangement is also quite more convenient. 
@@ -176,9 +140,15 @@ The generated CSV can be downloaded from the Coursera project submission link [h
 
 # Appendix
 Ideas and general clarifications were obtained from the very helpful page from 
-David Hood [@bloke], one of the TCAs 
+David Hood [Hood], one of the TCAs 
 
-The template for the used Codebook was obtained from [@codebooktemplate]
+The template for the used Codebook was obtained from [Schut]
 
 
 # References
+
+-  [Hood] :  Hood, David. 2015. “GETTING AND CLEANING THE ASSIGNMENT.” https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment
+
+-  [Schut] :  Schut, Joris. 2015. “Codebook Template.” https://gist.github.com/JorisSchut/dbc1fc0402f28cad9b41
+
+-  [Wickham] :  Wickham, Hadley. 2014. “Tidy Data.” The Journal of Statistical Software 59 (10). The Foundation for Open Access Statistics. doi:10.18637/jss.v059.i10
